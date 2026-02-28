@@ -32,6 +32,12 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
+      - name: Patch libsodium to 1.0.19
+        working-directory: ./openwrt
+        run: |
+          rm -rf feeds/packages/libs/libsodium
+          svn export https://github.com/openwrt/packages/trunk/libs/libsodium feeds/packages/libs/libsodium
+
       - name: Copy custom config
         run: |
           cp .config openwrt/.config
