@@ -24,6 +24,8 @@ jobs:
 
       - name: Replace feeds.conf.default
         run: |
+          # 删除 immortalwrt feed，避免 zabbix 冲突
+          sed -i '/immortalwrt/d' feeds.conf.default
           cp feeds.conf.default openwrt/feeds.conf.default
 
       - name: Update & install feeds
@@ -36,7 +38,9 @@ jobs:
         working-directory: ./openwrt
         run: |
           rm -rf feeds/packages/libs/libsodium
-          svn export https://github.com/openwrt/packages/trunk/libs/libsodium feeds/packages/libs/libsodium
+          mkdir -p feeds/packages/libs/libsodium
+          curl -L https://raw.githubusercontent.com/openwrt/packages/master/libs/libsodium/Makefile -o feeds/packages/libs/libsodium/Makefile
+          curl -L https://raw.githubusercontent.com/openwrt/packages/master/libs/libsodium/patches/100-fix-randombytes.patch -o feeds/packages/libs/libsodium/patches/100-fix-randombytes.patch
 
       - name: Copy custom config
         run: |
