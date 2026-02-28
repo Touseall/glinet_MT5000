@@ -1,0 +1,20 @@
+src-git packages https://github.com/openwrt/packages.git;openwrt-23.05
+src-git luci https://github.com/openwrt/luci.git;openwrt-23.05
+src-git routing https://github.com/openwrt-routing/packages.git;openwrt-23.05
+src-git telephony https://github.com/openwrt/telephony.git;openwrt-23.05
+
+# SSR+
+src-git helloworld https://github.com/fw876/helloworld.git
+
+# Passwall / Passwall2
+src-git passwall https://github.com/OpenWrt-Passwall/openwrt-passwall
+src-git passwall2 https://github.com/OpenWrt-Passwall/openwrt-passwall2
+
+# OpenClash
+src-git openclash https://github.com/vernesong/OpenClash.git
+
+# iStore
+src-git istore https://github.com/linkease/istore.git
+
+# 多拨 / 加速 / 花生壳
+src-git immortalwrt https://github.com/immortalwrt/packages.git
