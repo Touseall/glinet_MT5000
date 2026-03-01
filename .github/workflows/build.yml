@@ -50,6 +50,14 @@ jobs:
           cp -r temp_lucihttp/* feeds/luci/contrib/package/lucihttp/
           rm -rf temp_lucihttp
 
+      - name: Force replace rpcd-mod-luci with latest master version
+        working-directory: ./openwrt
+        run: |
+          rm -rf feeds/luci/libs/rpcd-mod-luci
+          git clone https://github.com/openwrt/luci.git temp_luci
+          cp -r temp_luci/libs/rpcd-mod-luci feeds/luci/libs/rpcd-mod-luci
+          rm -rf temp_luci
+
       - name: Copy custom config
         run: |
           cp .config openwrt/.config
