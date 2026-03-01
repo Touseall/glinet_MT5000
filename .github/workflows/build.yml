@@ -41,15 +41,6 @@ jobs:
           cp -r temp_pkgs/libs/libsodium feeds/packages/libs/libsodium
           rm -rf temp_pkgs
 
-      - name: Force replace lucihttp with latest master version
-        working-directory: ./openwrt
-        run: |
-          rm -rf feeds/luci/contrib/package/lucihttp
-          git clone https://github.com/jow-/lucihttp.git temp_lucihttp
-          mkdir -p feeds/luci/contrib/package/lucihttp
-          cp -r temp_lucihttp/* feeds/luci/contrib/package/lucihttp/
-          rm -rf temp_lucihttp
-
       - name: Force replace rpcd-mod-luci with latest master version
         working-directory: ./openwrt
         run: |
