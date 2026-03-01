@@ -33,13 +33,22 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
-      - name: Force replace libsodium with master version (full directory, PKG_VERSION=1.0.20)
+      - name: Force replace libsodium with master version (1.0.20)
         working-directory: ./openwrt
         run: |
           rm -rf feeds/packages/libs/libsodium
           git clone https://github.com/openwrt/packages.git temp_pkgs
           cp -r temp_pkgs/libs/libsodium feeds/packages/libs/libsodium
           rm -rf temp_pkgs
+
+      - name: Force replace lucihttp with latest master version
+        working-directory: ./openwrt
+        run: |
+          rm -rf feeds/luci/contrib/package/lucihttp
+          git clone https://github.com/jow-/lucihttp.git temp_lucihttp
+          mkdir -p feeds/luci/contrib/package/lucihttp
+          cp -r temp_lucihttp/* feeds/luci/contrib/package/lucihttp/
+          rm -rf temp_lucihttp
 
       - name: Copy custom config
         run: |
