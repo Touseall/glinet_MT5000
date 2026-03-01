@@ -53,6 +53,12 @@ jobs:
         run: |
           cp .config openwrt/.config
 
+      - name: Disable jsmin
+        working-directory: ./openwrt
+        run: |
+          sed -i '/jsmin/d' .config
+          echo "# CONFIG_PACKAGE_jsmin is not set" >> .config
+
       - name: Build
         working-directory: ./openwrt
         run: |
